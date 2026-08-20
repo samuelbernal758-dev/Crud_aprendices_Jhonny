@@ -2,11 +2,10 @@
   "name": "crud_aprendices_jhonny",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "dev": "node --watch app.js",
-    "production": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
