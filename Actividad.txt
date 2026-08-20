@@ -1,0 +1,5 @@
+1. Crear un archivo Validaciones (NOMBRE > 3 letras)
+validar correo valido con expresiones regulares 
+
+2. DNI Automatico
+3. Crear endpoints J
