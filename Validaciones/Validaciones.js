@@ -20,27 +20,6 @@ function validarAprendiz(datos) {
     }
 
 
-
-    if (datos.apellido === undefined || datos.apellido === '') {
-        return 'El apellido es obligatorio';
-    }
-
-    if (typeof datos.apellido !== 'string') {
-        return 'El apellido debe ser texto';
-    }
-
-    const apellido = datos.apellido.trim();
-
-    if (apellido.length < 3) {
-        return 'El apellido debe tener mínimo 3 caracteres';
-    }
-
-    if (apellido.length > 30) {
-        return 'El apellido no puede tener más de 30 caracteres';
-    }
-
-
-
     if (datos.edad === undefined) {
         return 'La edad es obligatoria';
     }
@@ -79,18 +58,6 @@ function validarAprendiz(datos) {
 
         if (datos.telefono.length > 10) {
             return 'El teléfono no puede tener más de 10 caracteres';
-        }
-    }
-
-
-    if (datos.programa !== undefined) {
-
-        if (typeof datos.programa !== 'string') {
-            return 'El programa debe ser texto';
-        }
-
-        if (datos.programa.trim().length > 100) {
-            return 'El programa no puede tener más de 100 caracteres';
         }
     }
 

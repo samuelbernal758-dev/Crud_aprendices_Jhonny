@@ -7,12 +7,29 @@ const port = process.env.PUERTO || 3000;
 // Permite recibir JSON
 app.use(express.json());
 
+//utilizacion de libres multer +
+const multer = require ('multer')
+const almacenamiento = multer.diskStorage({
+    destination:(req, file, cb) =>{
+        cb(null, "Misimagenes/")
+    }, 
+    filename: (req, file, cb)=>{
+        const extension = ruta.extname
+        
+        
+         cb(null, `${Date.now}`)
+    }
+})
+
+const cargar = multer({storage: almacenamiento})
+
 // Librerías para leer y manejar archivos
 const sistemaArchivo = require('fs');
 const ruta = require('path');
 
 // Importar las validaciones
 const validarAprendiz = require('./Validaciones/Validaciones');
+const { request } = require('http');
 
 // Ruta del archivo listaDatos.json
 const rutaArchivoJson = ruta.join(__dirname, 'listaDatos.json');
@@ -88,11 +105,11 @@ app.get('/api/aprendices/:dni', (req, res) => {
 });
 
 
-app.post('/api/aprendices', (req, res) => {
+app.post('/api/aprendices', cargar.single("Imagen"), (req, res) => {
 
     const datoAprendiz = req.body;
-
     // Validar datos
+    datosAprendiz.avatar = req.filename ? '/Misimagenes/$(req.file.filename)': "Sin imagen"
     const errorValidacion = validarAprendiz(datoAprendiz);
 
     if (errorValidacion) {
@@ -311,4 +328,4 @@ app.delete('/api/aprendices/:dni', (req, res) => {
 
 app.listen(port, () => {
     console.log(`SERVER: http://localhost:${port}`);
-});
+})
